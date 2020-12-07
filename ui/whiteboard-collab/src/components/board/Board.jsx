@@ -1,11 +1,23 @@
 import React from 'react';
-
+import io from 'socket.io-client';
 import './style.css';
 class Board extends React.Component{
 
-    
+    timeout;
+    socket = io.connect("http://localhost:5000");
     constructor(props) {
         super(props);
+
+        this.socket.on("canvas-data", function(data){
+            var image = new Image();
+            var canvas = document.querySelector('#board');
+            var ctx = canvas.getContext('2d');
+            image.onload = function(){
+                ctx.drawImage(image, 0, 0);
+            };
+            image.src=data;
+        })
+
     }
 
     componentDidMount() {
@@ -13,7 +25,7 @@ class Board extends React.Component{
     }
 
     drawOnCanvas() {
-        var canvas = document.querySelector('#Canvas');
+        var canvas = document.querySelector('#board');
     var ctx = canvas.getContext('2d');
 
     var sketch = document.querySelector('#sketch');
@@ -38,7 +50,7 @@ class Board extends React.Component{
     ctx.lineWidth = 5;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
-    ctx.strokeStyle = 'blue';
+    ctx.strokeStyle = 'red';
 
     canvas.addEventListener('mousedown', function(e) {
         canvas.addEventListener('mousemove', onPaint, false);
@@ -48,19 +60,25 @@ class Board extends React.Component{
         canvas.removeEventListener('mousemove', onPaint, false);
     }, false);
 
-    
+    var root=this;
     var onPaint = function() {
         ctx.beginPath();
         ctx.moveTo(last_mouse.x, last_mouse.y);
         ctx.lineTo(mouse.x, mouse.y);
         ctx.closePath();
         ctx.stroke();
+       
+        if(root.timeout != undefined) clearTimeout(root.timeout);
+        root.timeout = setTimeout(function(){
+            var base64ImageData = canvas.toDataURL("image/png");
+            root.socket.emit("canvas-data", base64ImageData);
+        }, 1000)
     };
-    }
+  }
     render(){
         return(
             <div class="sketch" id="sketch">
-            <canvas className="board" id="Canvas"></canvas>
+            <canvas className="board" id="board"></canvas>
             </div>
             
         )
