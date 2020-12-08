@@ -1,5 +1,9 @@
-//import logo from './logo.svg';
-import React from "react";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Container from './components/container/Container';
+
+import Import from './components/board/import';
+
 import './App.css';
 //import Container from './components/container/Container';
 import { Login } from "./components/login/index";
@@ -14,7 +18,7 @@ function App() {
   );
 }
 */
-class App extends React.Component {
+class Home extends React.Component {
 
   constructor(props){
     super(props);
@@ -40,7 +44,7 @@ class App extends React.Component {
     const current=isLogginActive ? "Register" : "Login";
     const currentActive =isLogginActive ? "login" : "register";
     return (
-      <div className="App">
+      <div className="Home">
         <div className="login">
           <div className="container" ref={ref => (this.container = ref)}>
           {isLogginActive && (
@@ -73,4 +77,20 @@ const RightSide = props => {
 
   </div>
 };
+
+
+
+function App(){
+    return(
+        <Router>
+            <div className="Routes">
+                <Route path="/Home" component={Home}/>
+                <Route path="/whiteboard" component={Container}/>
+                <Route path="/import" component={Import}/>
+
+            </div>
+        </Router>
+    )
+}
+ 
 export default App;

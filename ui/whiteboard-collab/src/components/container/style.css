@@ -1,8 +1,8 @@
-.container {
+.container1 {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: blue;
+    background: linear-gradient(45deg, #03A9F4, #4CAF50);
 }
 .board-container {
     width: 90%;
@@ -13,5 +13,15 @@
 }
 .color-picker-container {
     text-align: center;
+    display:inline;
+    color:white;
+}
+.brushsize-container{
+    display:inline;
+    color:white;
+    margin-left:12px;
+}
+.tools-section{
+    text-align:center;
 }
 
