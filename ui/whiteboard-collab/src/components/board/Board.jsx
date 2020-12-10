@@ -4,21 +4,32 @@ import './style.css';
 class Board extends React.Component{
 
     timeout;
-    socket = io.connect("http://localhost:5000");
+    socket = io.connect("http://localhost:8081",{transport:['websocket']});
 
     ctx;
+    isDrawing = false;
 
     constructor(props) {
         super(props);
 
         this.socket.on('canvas-data', function(data){
+           
+            var root = this;
+            var interval = setInterval(function(){
+                if(root.isDrawing) return;
+                root.isDrawing = true;
+                clearInterval(interval);
             var image = new Image();
             var canvas = document.querySelector('#board');
             var ctx = canvas.getContext('2d');
             image.onload = function(){
                 ctx.drawImage(image, 0, 0);
+
+                root.isDrawing = false;
             };
             image.src=data;
+            }, 200)
+            
         })
 
     }

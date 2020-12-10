@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Container from './components/container/Container';
-
+import Registering from './components/register';
 import Import from './components/board/import';
 
 import './App.css';
@@ -84,10 +84,11 @@ function App(){
     return(
         <Router>
             <div className="Routes">
+              
                 <Route path="/Home" component={Home}/>
                 <Route path="/whiteboard" component={Container}/>
                 <Route path="/import" component={Import}/>
-                
+             
 
 
             </div>
