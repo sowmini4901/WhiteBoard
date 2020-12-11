@@ -14,6 +14,7 @@
     "cors": "^2.8.5",
     "create-react-app": "^4.0.1",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
     "express-stormpath": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-secret": "^1.1.1",

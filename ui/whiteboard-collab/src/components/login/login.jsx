@@ -60,7 +60,7 @@ export class Login extends React.Component{
             <div>
         <div className="base-container" ref={this.props.containerRef}>
             <form onSubmit={this.loginUser}>
-            <div className="header">Login</div>
+            <div className="header">Login to Whiteboard</div>
             
             <div className="content">
                 <div className="image">

@@ -18,6 +18,9 @@ render(){
   return (
    
     <div className="Import">
+      
+
+    
       <input style={{display: 'none'}} 
       type="file" 
       onChange={this.fileSelectHandler}
@@ -26,8 +29,10 @@ render(){
      <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.5.207/build/pdf.worker.min.js">
     <div id="pdfviewer">
         <Viewer fileUrl={filePDF} /> 
+
     </div>
     </Worker>
+    
     </div>
    );
   }

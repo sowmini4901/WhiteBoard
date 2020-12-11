@@ -4,6 +4,7 @@ import Container from './components/container/Container';
 import Registering from './components/register';
 import Import from './components/board/import';
 
+
 import './App.css';
 //import Container from './components/container/Container';
 import { Login } from "./components/login/index";
@@ -88,6 +89,9 @@ function App(){
                 <Route path="/Home" component={Home}/>
                 <Route path="/whiteboard" component={Container}/>
                 <Route path="/import" component={Import}/>
+                <Route path="/new" component={Container}/>
+                
+                
              
 
 

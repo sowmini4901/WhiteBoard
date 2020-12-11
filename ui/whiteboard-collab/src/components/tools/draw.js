@@ -1,5 +1,6 @@
-import React, {useLayoutEffect,useState } from "react";
+import React from "react";
 import rough from 'roughjs/bundled/rough.esm';
+import {render} from '@testing-library/react';
 import { RoughGenerator } from "roughjs/bin/generator";
 
 function createElement(id,x1,y1,x2,y2,type){
@@ -106,9 +107,9 @@ elements.forEach(({roughElement}) => roughCanvas.draw(roughElement))
 
 const updateElement = (id,x1,y1,x2,y2,type) => {
 const updateElement = createElement(id, x1,y1,x2,y2,type);
-const index;
+
 const elementsCopy=[...elements];
-elementsCopy[index]=updateElement;
+elementsCopy[id]=updateElement;
 setElements(elementsCopy);
 };
 

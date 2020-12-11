@@ -1,6 +1,8 @@
 import React from 'react';
 import Board from '../board/Board';
 import './style.css';
+import {Link} from 'react-router-dom';
+import Import from '../board/import';
 class Container extends React.Component
 {
     constructor(props) {
@@ -47,7 +49,19 @@ class Container extends React.Component
                 <div class="board-container">
                     <Board color={this.state.color} size={this.state.size}></Board>
                 </div>
-         
+
+                <div className="create-section">
+                    <button > 
+                        <Link to='/new'> Create New
+                        </Link>
+                        </button>
+                </div>
+                <div className="import-section">
+                    <button > 
+                        <Link to='/import'> Import File
+                        </Link>
+                        </button>
+                </div>
                
             </div>
         )

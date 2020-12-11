@@ -3,6 +3,7 @@ var http = require('http').createServer(app);
 //var io = require('socket.io')(http);
 const cors = require('cors');
 var logger = require('morgan');
+const fileUpload = require('express-fileupload');
 const bodyParser = require("body-parser");
 //for database
 const db = require("./app/models");
@@ -48,4 +49,23 @@ http.listen(port, () => {
 
 
 require("./app/routes/routes")(app);
+app.use(fileUpload());
+
+// Upload Endpoint
+app.post('/upload', (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'No file uploaded' });
+  }
+
+  const file = req.files.file;
+
+  file.mv(`${__dirname}/ui/whiteboard-collab/public/uploads/${file.name}`, err => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+  });
+});
 module.exports=app;

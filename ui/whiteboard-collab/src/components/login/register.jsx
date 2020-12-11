@@ -74,7 +74,7 @@ export class Register extends React.Component{
           } = this.state;
         return <div className="base-container" ref={this.props.containerRef}>
              <form onSubmit={this.registerUser}>
-            <div className="header">Register</div>
+            <div className="header">Register As a new user</div>
             <div className="content">
             <div className="image">
                     <img src={loginImg} />

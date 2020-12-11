@@ -24,4 +24,12 @@
 .tools-section{
     text-align:center;
 }
-
+.create-section{
+    text-align: center;
+    display:inline;
+}
+.import-section{
+    text-align: center;
+    display:inline;
+    text-decoration: none;
+}
